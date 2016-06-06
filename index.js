@@ -60,4 +60,3 @@ httpServer.listen(port, ip, function() {
 
 // This will enable the Live Query real-time server
 ParseServer.createLiveQueryServer(httpServer);
-
