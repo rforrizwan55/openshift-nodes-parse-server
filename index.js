@@ -18,6 +18,12 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
+var port =  process.env.NODE_PORT || process.env.PORT || 1337;
+var ip = process.env.NODE_IP || process.env.IP || 'localhost';
+
+// Serve the Parse API on the /parse URL prefix
+var mountPath = process.env.PARSE_MOUNT || '/parse';
+
 var server = {
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
@@ -33,7 +39,7 @@ var dashboard = {
     apps: [
       {
         appId: server.appId,
-        serverURL: server.serverURL,
+        serverURL: 'http://' + ip + ':' + port + mountPath,
         masterKey: server.masterKey,
         appName: process.env.WEBSITE_SITE_NAME || process.env.OPENSHIFT_APP_DNS || 'Parse Server Dashboard'
       }
@@ -45,7 +51,8 @@ var dashboard = {
       }
     ]
   };
-  
+  console.log(dashboard);
+  console.log(server);
 var api = new ParseServer(server);
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
@@ -56,8 +63,6 @@ var app = express();
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
-// Serve the Parse API on the /parse URL prefix
-var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
   
 //Serve ParseDashboard
@@ -74,8 +79,6 @@ app.get('/test', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
-var port =  process.env.NODE_PORT || process.env.PORT || 1337;
-var ip = process.env.NODE_IP || process.env.IP || 'localhost';
 var httpServer = require('http').createServer(app);
 httpServer.listen(port, ip, function() {
     console.log('parse-server-example running on port ' + port + '.');

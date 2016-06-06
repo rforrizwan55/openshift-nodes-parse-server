@@ -40,6 +40,5 @@ if (cluster.isMaster) {
     });
   }
 } else {
-  "use strict";
   require('./index.js');
 }
