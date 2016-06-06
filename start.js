@@ -1,3 +1,4 @@
+
 var cluster = require('cluster'), 
       os      = require('os'),
       stopSignals = [
@@ -39,5 +40,6 @@ if (cluster.isMaster) {
     });
   }
 } else {
+  "use strict";
   require('./index.js');
 }
