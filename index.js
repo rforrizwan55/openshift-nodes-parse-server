@@ -3,6 +3,7 @@
 
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
+let ParseDashboard = require('parse-dashboard');
 var path = require('path');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGOLAB_URI 
@@ -17,7 +18,7 @@ if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
 
-var api = new ParseServer({
+var server = {
   databaseURI: databaseUri || 'mongodb://localhost:27017/dev',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
@@ -26,7 +27,26 @@ var api = new ParseServer({
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
   }
-});
+};
+//Init ParseDashboard
+var dashboard = {
+    apps: [
+      {
+        appId: server.appId,
+        serverURL: server.serverURL,
+        masterKey: server.masterKey,
+        appName: process.env.WEBSITE_SITE_NAME || process.env.OPENSHIFT_APP_DNS || 'Parse Server Dashboard'
+      }
+    ],
+    users: [
+      {
+        user: server.appId,
+        pass: server.masterKey
+      }
+    ]
+  };
+  
+var api = new ParseServer(server);
 // Client-keys like the javascript key or the .NET key are not necessary with parse-server
 // If you wish you require them, you can set them as options in the initialization above:
 // javascriptKey, restAPIKey, dotNetKey, clientKey
@@ -39,7 +59,10 @@ app.use('/public', express.static(path.join(__dirname, '/public')));
 // Serve the Parse API on the /parse URL prefix
 var mountPath = process.env.PARSE_MOUNT || '/parse';
 app.use(mountPath, api);
-
+  
+//Serve ParseDashboard
+app.use('/parse-dashboard', ParseDashboard(dashboard, true));
+ 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
   res.status(200).send('Make sure to star the parse-server repo on GitHub!');
