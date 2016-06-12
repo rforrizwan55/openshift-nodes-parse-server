@@ -34,6 +34,7 @@ var server = {
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID || 'myAppId',
   masterKey: process.env.MASTER_KEY || '', //Add your master key here. Keep it secret!
+  fileKey: process.env.FILE_KEY || 'invalid-file-key',
   serverURL: process.env.SERVER_URL || serverURL,  // Don't forget to change to https if needed
   liveQuery: {
     classNames: ["Posts", "Comments"] // List of classes to support for query subscriptions
