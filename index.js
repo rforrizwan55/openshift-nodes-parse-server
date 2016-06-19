@@ -65,6 +65,15 @@ var api = new ParseServer(server);
 
 var app = express();
 
+// Force https for security. Remove the following block if you want to allow http access
+app.use(function(req, res, next) {
+	if (req.headers['x-forwarded-proto'] == 'http') {
+		res.redirect('https://' + req.headers.host + req.path);
+	} else {
+		return next();
+	}
+});
+
 // Serve static assets from the /public folder
 app.use('/public', express.static(path.join(__dirname, '/public')));
 
