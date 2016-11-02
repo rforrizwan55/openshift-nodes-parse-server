@@ -9,11 +9,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "express": "~4.11.x",
+    "express": "^4.14.0",
     "kerberos": "~0.0.x",
     "parse": "~1.8.0",
-    "parse-server": "~2.2.11",
-    "parse-dashboard": "~1.0.13"
+    "parse-dashboard": "^1.0.19",
+    "parse-server": "^2.2.23"
   },
   "scripts": {
     "start": "node index.js"
