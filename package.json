@@ -1,7 +1,7 @@
 {
   "name": "parse-server-example",
   "version": "1.4.0",
-  "description": "An example Parse API server using the parse-server module for OpenShift",
+  "description": "An example Parse API server using the parse-server module",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -10,10 +10,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.14.0",
-    "kerberos": "~0.0.x",
-    "parse": "~1.8.0",
-    "parse-dashboard": "^1.0.19",
-    "parse-server": "^2.2.23"
+    "parse-dashboard": "latest",
+    "parse-server": "latest",
+    "parse-server-config": "latest"
   },
   "scripts": {
     "start": "node index.js"
