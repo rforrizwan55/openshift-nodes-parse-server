@@ -13,7 +13,7 @@ var serCon =
     {
         apps: [{
             appId: 'com.rizwan.jntuh',
-            serverURL: 'https://localhost:8080/parse',
+            serverURL: 'https://jntuh-schools9.rhcloud.com/parse',
             masterKey: 'superman2',
             appName: 'Parse Server'
         }],
