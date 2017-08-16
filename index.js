@@ -8,16 +8,7 @@ var url = require('url');
 var path = require('path');
 
 var config = parseServerConfig(__dirname);
-var serCon = { appId: 'com.rizwan.jntuh',
-    masterKey: 'superman2',
-    databaseURI: 'mongodb://admin:1pL4WKftn6ve@127.6.141.130:27017/jntuh',
-    serverURL: 'https://jntuh-schools9.rhcloud.com/parse',
-    fileKey: 'invalid-file-key',
-    cloud: '/var/lib/openshift/5993bcc62d52710458000031/app-root/runtime/repo/cloud/main.js',
-    logFolder: '/var/lib/openshift/5993bcc62d52710458000031/app-root/runtime/repo/logs',
-    publicServerURL: 'https://jntuh-schools9.rhcloud.com/parse',
-    appName: 'Parse Server',
-    enableAnonymousUsers: false };
+
 
 // Modify config as necessary before initializing parse server & dashboard
 //config.server.serverURL = "http://locahost:"+process.env.NODE_PORT+"/parse";
