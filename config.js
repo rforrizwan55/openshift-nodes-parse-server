@@ -6,8 +6,11 @@ module.exports = {
     },
     dashboard: {
         "apps": [
-
-                "serverURL": "http://localhost:8080/parse"
+            { appId: 'com.rizwan.jntuh',
+                serverURL: 'http://localhost:8080/parse',
+                masterKey: 'superman2',
+                appName: 'Parse Server'
+            }
             ]
     }
 }
