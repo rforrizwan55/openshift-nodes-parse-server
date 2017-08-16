@@ -9,21 +9,7 @@ var path = require('path');
 
 var config = parseServerConfig(__dirname);
 
-var dashboard = new ParseDashboard({
-    "apps": [{
-        "serverURL": 'https://jntuh-schools9.rhcloud.com/parse', // Not localhost
-        "appId": 'com.rizwan.jntuh',
-        "masterKey": 'superman2',
-        "appName": "jntuh",
-        "production": false
-    }],
-    "users": [
-        {
-            "user":"admin",
-            "pass":"password"
-        }
-    ]
-});
+
 
 // Modify config as necessary before initializing parse server & dashboard
 //config.server.serverURL = "http://locahost:"+process.env.NODE_PORT+"/parse";
@@ -31,7 +17,7 @@ var dashboard = new ParseDashboard({
 var app = express();
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/parse', new ParseServer(config.server));
-app.use('/parse-dashboard', ParseDashboard(dashboard, true));
+app.use('/parse-dashboard', ParseDashboard(config.dashboard, true));
 
 app.listen(process.env.NODE_PORT || url.parse(config.server.serverURL).port,process.env.NODE_IP || 'localhost', function () {
   console.log(__dirname);
