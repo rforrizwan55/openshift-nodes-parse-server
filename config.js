@@ -1,7 +1,7 @@
 module.exports = {
     server: {
         enableAnonymousUsers: false,
-        serverURL:'http://localhost:8080/parse',
+        serverURL:'https://jntuh-schools9.rhcloud.com/parse',
         publicServerURL:'https://jntuh-schools9.rhcloud.com/parse'
     },
     dashboard: {
