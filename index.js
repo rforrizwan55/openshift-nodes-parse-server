@@ -18,6 +18,7 @@ app.use('/parse', new ParseServer(config.server));
 app.use('/parse-dashboard', ParseDashboard(config.dashboard, true));
 
 app.listen(process.env.NODE_PORT || url.parse(config.server.serverURL).port,process.env.NODE_IP || 'localhost', function () {
+  console.log(__dirname);
   console.log(`Parse Server running at ${config.server.serverURL}`);
 });
 
