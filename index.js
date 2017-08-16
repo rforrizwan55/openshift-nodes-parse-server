@@ -15,7 +15,7 @@ var app = express();
 app.use('/public', express.static(__dirname + '/public'));
 app.use('/parse', new ParseServer(config.server));
 app.use('/parse-dashboard', ParseDashboard(config.dashboard, true));
-config.server.serverURL = "http://locahost:"+"+process.env.NODE_PORT+"/parse";
+config.server.serverURL = "http://locahost:"+process.env.NODE_PORT+"/parse";
 app.listen(process.env.NODE_PORT || url.parse(config.server.serverURL).port,process.env.NODE_IP || 'localhost', function () {
   console.log(`Parse Server running at ${config.server.serverURL}`);
 });
