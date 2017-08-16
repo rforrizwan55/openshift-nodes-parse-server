@@ -10,7 +10,7 @@ var path = require('path');
 var config = parseServerConfig(__dirname);
 
 // Modify config as necessary before initializing parse server & dashboard
-config.server.serverURL = "http://locahost:"+process.env.NODE_PORT+"/parse";
+//config.server.serverURL = "http://locahost:"+process.env.NODE_PORT+"/parse";
 
 var app = express();
 app.use('/public', express.static(__dirname + '/public'));
