@@ -5,6 +5,9 @@ module.exports = {
         publicServerURL:'https://jntuh-schools9.rhcloud.com/parse'
     },
     dashboard: {
-        serverURL:'http://localhost:8080/parse'
+        "apps": [
+            {
+                "serverURL": "http://localhost:8080/parse"
+            }]
     }
 }
