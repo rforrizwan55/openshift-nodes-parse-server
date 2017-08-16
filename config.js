@@ -6,8 +6,8 @@ module.exports = {
     },
     dashboard: {
         "apps": [
-            {
+
                 "serverURL": "http://localhost:8080/parse"
-            }]
+            ]
     }
 }
